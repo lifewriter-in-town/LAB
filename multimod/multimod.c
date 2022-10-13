@@ -247,7 +247,9 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 int i=0;
 uint64_t a1=a>>1;
 uint64_t sum=0;
-
+a=mod(a,m);
+b=mod(b,m);
+// b=num_of_digit(b);
 while(a)
 {
 if(a^(a1<<1))
