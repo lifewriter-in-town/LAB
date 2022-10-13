@@ -1,5 +1,5 @@
 #include <stdint.h>
-// #include<stdio.h>
+#include<stdio.h>
 // static int selfincre(int x)
 // {
 //   int p=1;
@@ -212,8 +212,8 @@ static inline int num_of_digit(unsigned long x)
 //   }
 // }
 uint64_t mod(uint64_t a,uint64_t b)
-{
-  if(b>a)
+{while(1)
+  {if(b>a)
   return a;
   else
   {
@@ -223,8 +223,9 @@ uint64_t mod(uint64_t a,uint64_t b)
     return a-b;
     else
     // return mod(sub(a,b<<(sub(adigit,add(bdigit,1)))),b);
-    return mod(a-(b<<(adigit-bdigit-1)),b);
+    a-=(b<<(adigit-bdigit-1));
   }
+}
 }
 // uint64_t mymultimod(uint64_t a, uint64_t b, uint64_t m) {
 // int i=0;
@@ -259,30 +260,30 @@ i++;
   return mod(sum,m); 
 
 }
-// int main()
-// { uint64_t num1=0,num2=0,num3=0,result=0;
-// int i=0;
-// int t=0;
-// uint64_t myans=0;
-//   FILE *file=fopen("input.txt","r");
-//   if(!file)
-//   return 0;
-//   while(i<10000)
-//   {i++;
-//     fscanf(file,"%lu",&num1);
-//     fscanf(file,"%lu",&num2);
-//     fscanf(file,"%lu",&num3);
-//     fscanf(file,"%lu",&result);
-//     myans=multimod(num1,num2,num3);
-//     if(myans!=result)
-//     {printf("(%lu*%lu) mod %lu =%lu !=%lu in line %d",num1,num2,num3,myans,result,i);
-//     t=1;
-//     break;
-//     }
-//   }
-//   fclose(file);
-//   if(!t)
-//   printf("all right");
-//   // printf("%lu",multimod(18446744073709551615,198,100));
-//   return 0;
-// }
+int main()
+{ uint64_t num1=0,num2=0,num3=0,result=0;
+int i=0;
+int t=0;
+uint64_t myans=0;
+  FILE *file=fopen("input.txt","r");
+  if(!file)
+  return 0;
+  while(i<10000)
+  {i++;
+    fscanf(file,"%lu",&num1);
+    fscanf(file,"%lu",&num2);
+    fscanf(file,"%lu",&num3);
+    fscanf(file,"%lu",&result);
+    myans=multimod(num1,num2,num3);
+    if(myans!=result)
+    {printf("(%lu*%lu) mod %lu =%lu !=%lu in line %d",num1,num2,num3,myans,result,i);
+    t=1;
+    break;
+    }
+  }
+  fclose(file);
+  if(!t)
+  printf("all right");
+  // printf("%lu",multimod(18446744073709551615,198,100));
+  return 0;
+}
