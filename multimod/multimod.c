@@ -35,13 +35,24 @@ static inline int full_add(int x, int y, unsigned long z) {
 static inline int carry(int x, int y, unsigned long z) {
   return (x & y) | (x & z) | (y & z);
 }
+// static inline int mynum_of_digit(unsigned long x)
+// {
+//   int num=0;
+//   x=x>>1;
+//   while(x)
+//   {x=x>>1;
+//     num=selfincre(num);
+//   }
+//   return num;
+
+// }
 static inline int num_of_digit(unsigned long x)
 {
   int num=0;
   x=x>>1;
   while(x)
   {x=x>>1;
-    num=selfincre(num);
+    num++;
   }
   return num;
 
@@ -200,19 +211,19 @@ int cmp(uint64_t x,uint64_t y)
 //     return mymod(sub(a,b<<(sub(adigit,add(bdigit,1)))),b);
 //   }
 // }
-uint64_t mod(uint64_t a,uint64_t b)
+uint64_t mod(uint64_t a,uint64_t b,int bdigit)
 {
   if(b>a)
   return a;
   else
   {
     int adigit=num_of_digit(a);
-    int bdigit=num_of_digit(b);
+   
     if(adigit==bdigit)
     return a-b;
     else
     // return mod(sub(a,b<<(sub(adigit,add(bdigit,1)))),b);
-    return mod(a-(b<<(adigit-bdigit-1)),b);
+    return mod(a-(b<<(adigit-bdigit-1)),b,bdigit);
   }
 }
 // uint64_t mymultimod(uint64_t a, uint64_t b, uint64_t m) {
@@ -235,6 +246,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 int i=0;
 uint64_t a1=a>>1;
 uint64_t sum=0;
+ int bdigit=num_of_digit(b);
 while(a)
 {
 if(a^(a1<<1))
@@ -244,7 +256,7 @@ a1=a1>>1;
 i++;
 
 }
-  return mod(sum,m); 
+  return mod(sum,m,bdigit); 
 
 }
 // int main()
