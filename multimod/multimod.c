@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include<stdio.h>
+// #include<stdio.h>
 static int selfincre(int x)
 {
   int p=1;
