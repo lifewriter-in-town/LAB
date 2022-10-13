@@ -1,40 +1,40 @@
 #include <stdint.h>
 // #include<stdio.h>
-static int selfincre(int x)
-{
-  int p=1;
-  int t=1;
-  int x1=x>>1;
-  int x2=x;
-  while(t)
-  {
-    if(x^(x1<<1))
-    {
-      x=x1;
-      x1=x1>>1;
-      p=p<<1;
-      p^=1;
+// static int selfincre(int x)
+// {
+//   int p=1;
+//   int t=1;
+//   int x1=x>>1;
+//   int x2=x;
+//   while(t)
+//   {
+//     if(x^(x1<<1))
+//     {
+//       x=x1;
+//       x1=x1>>1;
+//       p=p<<1;
+//       p^=1;
 
-    }
-    else
-    t=0;
-
-
-  }
-  return x2^p;
+//     }
+//     else
+//     t=0;
 
 
-}
-static inline int bit_of(int x, int i) {
-  return (x >> i) & 1;
-}
-static inline int full_add(int x, int y, unsigned long z) {
-  return x ^ y ^ z;
-}
+//   }
+//   return x2^p;
 
-static inline int carry(int x, int y, unsigned long z) {
-  return (x & y) | (x & z) | (y & z);
-}
+
+// }
+// static inline int bit_of(int x, int i) {
+//   return (x >> i) & 1;
+// }
+// static inline int full_add(int x, int y, unsigned long z) {
+//   return x ^ y ^ z;
+// }
+
+// static inline int carry(int x, int y, unsigned long z) {
+//   return (x & y) | (x & z) | (y & z);
+// }
 // static inline int mynum_of_digit(unsigned long x)
 // {
 //   int num=0;
@@ -63,140 +63,140 @@ static inline int num_of_digit(unsigned long x)
 //   return x>y?x:y;
 // }
 
-static inline int cmpint(int x,int y)
-{
-  int max=-1;
-  int x3=x;
-  int y3=y;
-  int x1=x;
-  int y1=y;
-  int x2=0;
-  int y2=0;
-  while(x||y)
-  {
-    x=x>>1;
-    y=y>>1;
-    x2=x1^(x<<1);
-    y2=y1^(y<<1);
-    if(x2==1&&y2==0)
-    max=x3;
-    else if(x2==0&&y2==1)
-    max=y3;
-    x1=x;
-    y1=y;
+// static inline int cmpint(int x,int y)
+// {
+//   int max=-1;
+//   int x3=x;
+//   int y3=y;
+//   int x1=x;
+//   int y1=y;
+//   int x2=0;
+//   int y2=0;
+//   while(x||y)
+//   {
+//     x=x>>1;
+//     y=y>>1;
+//     x2=x1^(x<<1);
+//     y2=y1^(y<<1);
+//     if(x2==1&&y2==0)
+//     max=x3;
+//     else if(x2==0&&y2==1)
+//     max=y3;
+//     x1=x;
+//     y1=y;
 
 
-  }
-  if(max==x3)
-  return 1;
-  else
-  return 0;
+//   }
+//   if(max==x3)
+//   return 1;
+//   else
+//   return 0;
 
-}
-static inline unsigned long add(unsigned long x,unsigned long y)
-{
-  unsigned long temp[131];
-  unsigned long x1=x;
-  unsigned long y1=y;
-  int i=0;
-  unsigned long ans=0;
-  unsigned long carry0=0;
-  int j=0;
-  while(x && y)
-  {
-    if(x==1)
-    {
-      temp[i<<1]=x;
-      x=x>>1;
-    }
-    else
-    {
-      x=x>>1;
-      temp[i<<1]=x1^(x<<1);
-    }
-    if(y==1)
-    {
-      temp[(i<<1)^1]=1;
-      y=y>>1;
-    }
-    else
-    {
-    y=y>>1;
-    temp[(i<<1)^1]=y1^(y<<1);
-    }
-    i=selfincre(i);
-    x1=x;
-    y1=y;
-  }
-  while(x)
-  {
-    x=x>>1;
-    temp[i<<1]=x1^(x<<1);
-    temp[(i<<1)^1]=0;
-    i=selfincre(i);
-    x1=x;
-  }
-   while(y)
-  {
-    y=y>>1;
-    temp[i<<1]=0;
-    temp[(i<<1)^1]=y1^(y<<1);
-    i=selfincre(i);
-    y1=y;
-  }
-  while(cmpint(i,j))
-  {
+// }
+// static inline unsigned long add(unsigned long x,unsigned long y)
+// {
+//   unsigned long temp[131];
+//   unsigned long x1=x;
+//   unsigned long y1=y;
+//   int i=0;
+//   unsigned long ans=0;
+//   unsigned long carry0=0;
+//   int j=0;
+//   while(x && y)
+//   {
+//     if(x==1)
+//     {
+//       temp[i<<1]=x;
+//       x=x>>1;
+//     }
+//     else
+//     {
+//       x=x>>1;
+//       temp[i<<1]=x1^(x<<1);
+//     }
+//     if(y==1)
+//     {
+//       temp[(i<<1)^1]=1;
+//       y=y>>1;
+//     }
+//     else
+//     {
+//     y=y>>1;
+//     temp[(i<<1)^1]=y1^(y<<1);
+//     }
+//     i=selfincre(i);
+//     x1=x;
+//     y1=y;
+//   }
+//   while(x)
+//   {
+//     x=x>>1;
+//     temp[i<<1]=x1^(x<<1);
+//     temp[(i<<1)^1]=0;
+//     i=selfincre(i);
+//     x1=x;
+//   }
+//    while(y)
+//   {
+//     y=y>>1;
+//     temp[i<<1]=0;
+//     temp[(i<<1)^1]=y1^(y<<1);
+//     i=selfincre(i);
+//     y1=y;
+//   }
+//   while(cmpint(i,j))
+//   {
    
-    unsigned long ans1=full_add(temp[j<<1],temp[(j<<1)^1],carry0);
-    carry0=carry(temp[j<<1],temp[(j<<1)^1],carry0);
-    // printf("%lu ,%lu\n",ans,ans1<<j);
-    ans|=(ans1<<j);
+//     unsigned long ans1=full_add(temp[j<<1],temp[(j<<1)^1],carry0);
+//     carry0=carry(temp[j<<1],temp[(j<<1)^1],carry0);
+//     // printf("%lu ,%lu\n",ans,ans1<<j);
+//     ans|=(ans1<<j);
 
-    j=selfincre(j);
-
-
-  }
-  if(i==64)
-  return ans;
-  ans|=carry0<<i;
-  return ans;
-
-}
-uint64_t sub(uint64_t a,uint64_t b)
-{
-  uint64_t c=add(b^0xffffffffffffffff,1);
-  return add(a,c);
-
-}
-int cmp(uint64_t x,uint64_t y)
-{
- int max=-1;
-  uint64_t x3=x;
-  uint64_t y3=y;
-  uint64_t x1=x;
-  uint64_t y1=y;
-  int x2=0;
-  int y2=0;
-  while(x||y)
-  {
-    x=x>>1;
-    y=y>>1;
-    x2=x1^(x<<1);
-    y2=y1^(y<<1);
-    if(x2==1&&y2==0)
-    max=x3;
-    else if(x2==0&&y2==1)
-    max=y3;
-    x1=x;
-    y1=y;
+//     j=selfincre(j);
 
 
-  }
-  if(max==x3)
-  return 1;
-  else
-  return 0;
-}
+//   }
+//   if(i==64)
+//   return ans;
+//   ans|=carry0<<i;
+//   return ans;
+
+// }
+// uint64_t sub(uint64_t a,uint64_t b)
+// {
+//   uint64_t c=add(b^0xffffffffffffffff,1);
+//   return add(a,c);
+
+// }
+// int cmp(uint64_t x,uint64_t y)
+// {
+//  int max=-1;
+//   uint64_t x3=x;
+//   uint64_t y3=y;
+//   uint64_t x1=x;
+//   uint64_t y1=y;
+//   int x2=0;
+//   int y2=0;
+//   while(x||y)
+//   {
+//     x=x>>1;
+//     y=y>>1;
+//     x2=x1^(x<<1);
+//     y2=y1^(y<<1);
+//     if(x2==1&&y2==0)
+//     max=x3;
+//     else if(x2==0&&y2==1)
+//     max=y3;
+//     x1=x;
+//     y1=y;
+
+
+//   }
+//   if(max==x3)
+//   return 1;
+//   else
+//   return 0;
+// }
 // uint64_t mymod(uint64_t a,uint64_t b)
 // {
 //   if(cmp(b,a))
