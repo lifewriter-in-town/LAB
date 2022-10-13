@@ -211,14 +211,14 @@ static inline int num_of_digit(unsigned long x)
 //     return mymod(sub(a,b<<(sub(adigit,add(bdigit,1)))),b);
 //   }
 // }
-uint64_t mod(uint64_t a,uint64_t b)
+uint64_t mod(uint64_t a,uint64_t b,int bdigit)
 {while(1)
   {if(b>a)
   return a;
   else
   {
     int adigit=num_of_digit(a);
-    int bdigit=num_of_digit(b);
+    // int bdigit=num_of_digit(b);
     if(adigit==bdigit)
     return a-b;
     else
@@ -247,9 +247,9 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 int i=0;
 uint64_t a1=a>>1;
 uint64_t sum=0;
-a=mod(a,m);
-b=mod(b,m);
-// b=num_of_digit(b);
+// a=mod(a,m);
+// b=mod(b,m);
+int bdigit=num_of_digit(b);
 while(a)
 {
 if(a^(a1<<1))
@@ -259,7 +259,7 @@ a1=a1>>1;
 i++;
 
 }
-  return mod(sum,m); 
+  return mod(sum,m,bdigit); 
 
 }
 // int main()
