@@ -46,7 +46,7 @@
 //   return num;
 
 // }
-static inline int num_of_digit(unsigned long x)
+static inline int num_of_digit(uint64_t x)
 {
   int num=0;
   x=x>>1;
