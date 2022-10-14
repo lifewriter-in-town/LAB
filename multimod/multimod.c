@@ -224,9 +224,9 @@ uint64_t mod(uint64_t a,uint64_t b,int bdigit)
     else if(adigit-bdigit==1)
     {
       if(a>=(b<<1))
-      return a-(b<<1)
+      return a-(b<<1);
       else
-      return a-b
+      return a-b;
     }
     else
     // return mod(sub(a,b<<(sub(adigit,add(bdigit,1)))),b);
