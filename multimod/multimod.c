@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include<stdio.h>
+// #include<stdio.h>
 // static int selfincre(int x)
 // {
 //   int p=1;
@@ -224,7 +224,7 @@ uint64_t mod(uint64_t a,uint64_t b,int bdigit)
     else if(adigit-bdigit==1)
     {
       if(a>=(b<<1))
-      return a-(b<<1);
+      a-=(b<<1);
       else
       return a-b;
     }
@@ -251,31 +251,40 @@ uint64_t mod(uint64_t a,uint64_t b,int bdigit)
 
 // }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
-int i=0;
+// int i=0;
 // int b1=b;
-uint64_t a1=a>>1;
+
 uint64_t sum=0;
 int mdigit=num_of_digit(m);
 a=mod(a,m,mdigit);
+uint64_t a1=a>>1;
 b=mod(b,m,mdigit);
 while(a)
 {
-
-if((b<<1)>m)
-b=b-(m-b);
 if(a^(a1<<1))
-sum+=b;
-a=a1;
-a1=a1>>1;
-i++;
+{
+  if(sum>=m-b)
+  sum-=(m-b);
+  else
+  sum+=b;
 
 }
+if((b>=m-b))
+b=b-(m-b);
+else
+b=b<<1;
+a=a1;
+a1=a1>>1;
+// i++;
 
-  return mod(sum,m,mdigit); 
+}
+return sum;
+  // return mod(sum,m,mdigit); 
 
 }
 // int main()
-// { uint64_t num1=0,num2=0,num3=0,result=0;
+// { 
+//   uint64_t num1=0,num2=0,num3=0,result=0;
 // int i=0;
 // int t=0;
 // uint64_t myans=0;
@@ -298,6 +307,6 @@ i++;
 //   fclose(file);
 //   if(!t)
 //   printf("all right");
-//   // printf("%lu",multimod(18446744073709551615,198,100));
+//   // printf("%lu",multimod(14737217043874263189,17573242209543517580,5656938528057583590));
 //   return 0;
 // }
