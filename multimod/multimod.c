@@ -252,19 +252,19 @@ uint64_t mod(uint64_t a,uint64_t b,int bdigit)
 // }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 int i=0;
-int b1=b;
+// int b1=b;
 uint64_t a1=a>>1;
 uint64_t sum=0;
 int mdigit=num_of_digit(m);
 a=mod(a,m,mdigit);
-b1=mod(b1,m,mdigit);
+b=mod(b,m,mdigit);
 while(a)
 {
 
-if((b1<<1)>m)
-b1=b1-(m-b1);
+if((b<<1)>m)
+b=b-(m-b);
 if(a^(a1<<1))
-sum+=b1;
+sum+=b;
 a=a1;
 a1=a1>>1;
 i++;
