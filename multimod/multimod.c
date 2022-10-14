@@ -221,6 +221,13 @@ uint64_t mod(uint64_t a,uint64_t b,int bdigit)
     // int bdigit=num_of_digit(b);
     if(adigit==bdigit)
     return a-b;
+    else if(adigit-bdigit==1)
+    {
+      if(a>=(b<<1))
+      return a-(b<<1)
+      else
+      return a-b
+    }
     else
     // return mod(sub(a,b<<(sub(adigit,add(bdigit,1)))),b);
     a-=(b<<(adigit-bdigit-1));
@@ -247,9 +254,9 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 int i=0;
 uint64_t a1=a>>1;
 uint64_t sum=0;
-a=mod(a,m);
-b=mod(b,m);
-int bdigit=num_of_digit(b);
+int mdigit=num_of_digit(m);
+// a=mod(a,m,mdigit);
+// b=mod(b,m,mdigit);
 while(a)
 {
 if(a^(a1<<1))
@@ -259,7 +266,7 @@ a1=a1>>1;
 i++;
 
 }
-  return mod(sum,m,bdigit); 
+  return mod(sum,m,mdigit); 
 
 }
 // int main()
