@@ -223,8 +223,10 @@ uint64_t mod(uint64_t a,uint64_t b,int bdigit)
     return a-b;
     else if(adigit-bdigit==1)
     {
-      if(a>=(b<<1))
-      a-=(b<<1);
+      if(a-b>=(b<<1))
+      return a-b-(b<<1);
+      else if(a>=(b<<1))
+      return a-(b<<1);
       else
       return a-b;
     }
